@@ -4,68 +4,103 @@ import homebg from "../assets/images/home/header-banner.webp";
 import OurRides from "./components/ourrides";
 import DesertAdventure from "./pages/DesertAdventure";
 import sectionimg from "../assets/images/home/EXTREME-DESERT-TOURS.webp";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const pathname = usePathname();
-  console.log("Current Pathname:", pathname);
+  const [title, setTitle] = useState("Unleash Your Inner Adventurer with our Buggy Rental Service in Dubai");
+  const [buttonText, setButtonText] = useState("BOOK DUNE NOW");
 
-// 
-const title ="Experience the Desert with our Dune Buggy Rental Service in Dubai"
+  useEffect(() => {
+    // Set content based on pathname
+    if (pathname === "/dunebuggy") {
+      setTitle("Experience the Desert with our Dune Buggy Rental Service in Dubai");
+      setButtonText("Book Dune Buggy Rides Now");
+    }
+    if (pathname === "/") {
+      setTitle("Unleash Your Inner Adventurer with our Buggy Rental Service in Dubai");
+      setButtonText("BOOK DUNE NOW");
+    }
+  }, [pathname]);
+
   return (
     <>
-      <div
+      {/* Hero Section */}
+      <section
         className="relative w-full min-h-screen flex justify-center items-center px-4 overflow-hidden"
         style={{
-          backgroundImage: `linear-gradient(to bottom, #FA822C, transparent), url(${homebg.src})`,
+          backgroundImage: `linear-gradient(to bottom, rgba(250, 130, 44, 0.85), rgba(0, 0, 0, 0.3)), url(${homebg.src})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="text-center max-w-4xl mx-auto py-12 ">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black drop-shadow-lg leading-tight text-text1">
-            Unleash Your Inner Adventurer
-            <span className="block">with our Buggy Rental Service in</span>
-            <span className="block">Dubai</span>
+        <div className="text-center max-w-4xl mx-auto py-12 z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white drop-shadow-md leading-tight mb-6">
+            {title.split('\n').map((line, i) => (
+              <span key={i} className="block">{line}</span>
+            ))}
           </h1>
 
           <button
-            className="mt-8 px-8 py-3 bg-white text-text1 font-semibold text-lg rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-            value="Book Dune Buggy Rides"
+            className="mt-8 px-10 uppercase py-4 bg-white text-orange-600 font-bold text-xl rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-orange-50 focus:outline-none focus:ring-4 focus:ring-orange-300 focus:ring-opacity-50"
+            aria-label="Book dune buggy rides"
           >
-            BOOK DUNE NOW
+            {buttonText}
           </button>
         </div>
-      </div>
 
-      {/* Example: showing pathname */}
-      <div className="text-center py-4 text-gray-600">
-        Current Path: {pathname}
-      </div>
+        {/* Decorative overlay */}
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+      </section>
+
+      {/* Pathname indicator - remove in production */}
 
       <OurRides />
-      <DesertAdventure />
-      <section className="relative w-full flex flex-col md:flex-row items-center justify-between px-25 md:pl-30 py-12">
-        {/* Left Image */}
-        <div className="md:w-1/2 w-full flex justify-center md:justify-start relative z-10">
-          <Image src={sectionimg} alt="Polaris Buggy" width={600} height={800} />
-        </div>
 
-        {/* Right Content */}
-        <div className="md:w-1/2 w-full mt-8 md:mt-0 relative z-10">
-          <h2 className="text-2xl md:text-4xl font-black text-orange-600">
-            EXTREME DESERT TOURS
-          </h2>
-          <p className="mt-6 text-[#0c1a3d] text-base md:text-lg leading-snug">
-            We at Buggy Riders have put together a selection of thrilling desert
-            activities to satisfy the desires of every thrill-seeker...
-          </p>
-          <p className="mt-10">
-            Dubai’s desert offers a variety of activities to enjoy against the
-            stunning backdrop of endless dunes and starry nights...
-          </p>
-        </div>
-      </section>
+      {pathname === "/" && (
+        <>
+          <DesertAdventure />
+
+          {/* Extreme Desert Tours Section */}
+          <section className="relative w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 py-16 bg-gray-50">
+            {/* Left Image */}
+            <div className="md:w-1/2 w-full flex justify-center md:justify-start mb-8 md:mb-0">
+              <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
+                <Image
+                  src={sectionimg}
+                  alt="Polaris Buggy in desert adventure"
+                  width={600}
+                  height={800}
+                  placeholder="blur"
+                  className="rounded-lg shadow-md"
+                />
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="md:w-1/2 w-full md:pl-10 lg:pl-16">
+              <h2 className="text-3xl md:text-4xl font-black text-orange-600 mb-6">
+                EXTREME DESERT TOURS
+              </h2>
+              <div className="space-y-4 text-gray-800">
+                <p className="text-lg leading-relaxed">
+                  We at Buggy Riders have put together a selection of thrilling desert
+                  activities to satisfy the desires of every thrill-seeker...
+                </p>
+                <p className="text-lg leading-relaxed">
+                  Dubai's desert offers a variety of activities to enjoy against the
+                  stunning backdrop of endless dunes and starry nights...
+                </p>
+              </div>
+              <button className="mt-8 px-8 py-3 bg-orange-600 text-white font-semibold rounded-full hover:bg-orange-700 transition-colors duration-300">
+                Explore Our Tours
+              </button>
+            </div>
+          </section>
+        </>
+      )}
     </>
   );
 }

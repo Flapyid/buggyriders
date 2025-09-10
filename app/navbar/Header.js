@@ -67,12 +67,6 @@ const Header = () => {
               Desert Adventure
             </Link>
             <Link
-              href="/about"
-              className={`${isActive("/desertadventure")} transition duration-300`}
-            >
-              About
-            </Link>
-            <Link
               href="/gallery"
               className={`${isActive("/gallery")} transition duration-300`}
             >

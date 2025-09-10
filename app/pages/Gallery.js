@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Eye, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 // Generate image paths from 1.webp → 89.webp
 const galleryImages = Array.from({ length: 89 }, (_, i) => `/gallery/${i + 1}.webp`);
@@ -9,7 +10,12 @@ const galleryImages = Array.from({ length: 89 }, (_, i) => `/gallery/${i + 1}.we
 export default function Gallery() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedImage, setSelectedImage] = useState(null);
-  const imagesPerPage = 10; // Change how many per page
+  const pathname = usePathname();
+
+  const isGalleryPage = pathname.includes("gallery");
+
+  // ✅ Change images per page based on path
+  const imagesPerPage = isGalleryPage ? 15 : 10;
 
   const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
   const startIndex = (currentPage - 1) * imagesPerPage;
@@ -17,18 +23,20 @@ export default function Gallery() {
 
   return (
     <section className="w-full py-12 px-6 md:px-16 bg-white">
-      {/* Heading */}
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-5xl font-extrabold text-[#0c1a3d] uppercase">
-          Gallery
-        </h2>
-        <div className="w-24 h-1 bg-orange-500 mx-auto mt-2 rounded"></div>
-      </div>
+      {/* Heading - Only show if NOT on /gallery */}
+      {!isGalleryPage && (
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0c1a3d] uppercase">
+            Gallery
+          </h2>
+          <div className="w-24 h-1 bg-orange-500 mx-auto mt-2 rounded"></div>
+        </div>
+      )}
 
       {/* Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-col-5">
+      <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-col-5 gap-4">
         {currentImages.map((src, i) => (
-          <div key={i} className="relative group overflow-hidden  shadow-md">
+          <div key={i} className="relative group overflow-hidden shadow-md">
             <Image
               src={src}
               alt={`Gallery Image ${startIndex + i + 1}`}
@@ -46,38 +54,39 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Pagination */}
-      {/* <div className="flex justify-center mt-6 space-x-2">
-        <button
-          onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          disabled={currentPage === 1}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-        >
-          Prev
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => (
+      {/* Pagination - Only on gallery page */}
+      {isGalleryPage && (
+        <div className="flex justify-center mt-6 space-x-2">
           <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={`px-3 py-1 rounded ${
-              currentPage === i + 1 ? "bg-orange-500 text-white" : "bg-gray-200"
-            }`}
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
           >
-            {i + 1}
+            Prev
           </button>
-        ))}
-        <button
-          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-          disabled={currentPage === totalPages}
-          className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div> */}
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 rounded ${
+                currentPage === i + 1 ? "bg-orange-500 text-white" : "bg-gray-200"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
 
-      {/* add view more button here */}
-      {/* View More Button */}
-      {currentPage < totalPages && (
+      {/* View More Button - Only outside /gallery */}
+      {!isGalleryPage && currentPage < totalPages && (
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
@@ -92,7 +101,6 @@ export default function Gallery() {
       {selectedImage && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
           <div className="relative max-w-4xl w-full">
-            {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-3 right-3 text-white hover:text-gray-300"

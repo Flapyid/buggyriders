@@ -22,6 +22,14 @@ export default function Home() {
       setTitle("Unleash Your Inner Adventurer with our Buggy Rental Service in Dubai");
       setButtonText("BOOK DUNE NOW");
     }
+    if (pathname === "/quadbike") {
+      setTitle("Discover the Beauty of Dubai's Desert with our quad bike Rental in Dubai");
+      setButtonText("BOOK Quad bike NOW");
+    }
+    if (pathname === "/desertadventure") {
+      setTitle("Explore Desert Safari Adventure in Dubai");
+      setButtonText("BOOK desert NOW");
+    }
   }, [pathname]);
 
   return (
@@ -59,12 +67,11 @@ export default function Home() {
 
       <OurRides />
 
-      {pathname === "/" && (
-        <>
+      {(pathname === "/" || pathname === "/desertadventure") && (        
           <DesertAdventure />
-
-          {/* Extreme Desert Tours Section */}
-          <section className="relative w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 py-16 bg-gray-50">
+      )}
+      {(pathname === "/" ) && (        
+           <section className="relative w-full flex flex-col md:flex-row items-center justify-between px-4 md:px-8 lg:px-16 py-16 bg-gray-50">
             {/* Left Image */}
             <div className="md:w-1/2 w-full flex justify-center md:justify-start mb-8 md:mb-0">
               <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
@@ -99,8 +106,8 @@ export default function Home() {
               </button>
             </div>
           </section>
-        </>
       )}
+
     </>
   );
 }

@@ -5,15 +5,61 @@ import tiremarkourrides from "../../assets/images/global/service-section-top-wat
 import tiremarkpolaris from "../../assets/images/global/service-section-right-water-image.svg"
 import duneBuggyImg from "../../assets/images/home/Dune-Buggy-Rentals.webp"
 import polarisImg from "../../assets/images/home/Polaris-Buggies.webp"
+import quadbike1 from "../../assets/images/services/quad-bike-tours.webp"
+import quadbike2 from "../../assets/images/services/quad-bike-tours-02.webp"
+import quadbike3 from "../../assets/images/services/quad-bike-tours-03.webp"
 import Packages from "../pages/Packages";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 
 
 export default function OurRides() {
     const pathname = usePathname();
     const [title, setTitle] = useState("OUR Rides");
     const [description, setDescription] = useState("Buggy Riders’ dune buggy rental service presents a unique opportunity to discover the mesmerising beauty of the desert that one rarely gets to see.");
+
+
+    const quadbikes = [
+        {
+            id: "quad bike tours",
+            title: "quad bike tours",
+            duration: "Tour duration: 30 Minutes",
+            age: 'Driver age: 16+ ',
+            image: quadbike1,
+            pricing: [
+                { duration: "30 MINUTES", oldPrice: 178, newPrice: 149 },
+
+            ],
+        },
+        {
+            id: "quad bike tours",
+            title: "quad bike tours",
+            duration: "Tour duration: 1 Hour",
+            age: 'Driver age: 16+ ',
+            image: quadbike2,
+            pricing: [
+                { duration: "1 HOUR", oldPrice: 298, newPrice: 249 },
+
+            ],
+        },
+        {
+            id: "quad bike tours",
+            title: "quad bike tours",
+            duration: "Tour duration: 2 Hour",
+            age: 'Driver age: 16+ ',
+            image: quadbike3,
+            pricing: [
+                { duration: "2 HOUR", oldPrice: 478, newPrice: 399 },
+
+            ],
+        },
+
+
+
+    ];
+
     useEffect(() => {
         // Set content based on pathname
         if (pathname === "/dunebuggy") {
@@ -22,6 +68,14 @@ export default function OurRides() {
         }
         if (pathname === "/") {
             setTitle("OUR Rides");
+            setDescription("Buggy Riders’ dune buggy rental service presents a unique opportunity to discover the mesmerising beauty of the desert that one rarely gets to see.");
+        }
+        if (pathname === "/quadbike") {
+            setTitle("Quad bike tours");
+            setDescription("Buggy Riders’ dune buggy rental service presents a unique opportunity to discover the mesmerising beauty of the desert that one rarely gets to see.");
+        }
+        if (pathname === "/desertadventure") {
+            setTitle("DESERT ADVENTURE");
             setDescription("Buggy Riders’ dune buggy rental service presents a unique opportunity to discover the mesmerising beauty of the desert that one rarely gets to see.");
         }
     }, [pathname]);
@@ -148,8 +202,125 @@ export default function OurRides() {
                 </>
             )}
 
+            {pathname === "/quadbike" && (
+                <>
+                    <div className="flex w-full justify-center gap-10 bg-white mb-20 ">
+                        {quadbikes.map((service) => (
+                            <div key={service.id} className="w-full max-w-md border  border-gray-700  hover:border-[#f05b00] rounded-2xl bg-white shadow-lg relative overflow-visible transition-all duration-200 group">
 
-            <Packages />
+
+                                {/* Image Section */}
+                                <motion.div className="relative overflow-hidden rounded-t-2xl">
+                                    {typeof service.image === "string" ? (
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            width={600}
+                                            height={400}
+                                            className="w-full h-48 sm:h-56 md:min-h-80 object-cover transition-transform duration-600"
+                                        />
+                                    ) : (
+                                        <Image
+                                            src={service.image}
+                                            alt={service.title}
+                                            width={600}
+                                            height={400}
+                                            className="w-full h-48 sm:h-56 md:min-h-80 object-cover transition-transform duration-600"
+                                        />
+                                    )}
+                                </motion.div>
+
+
+                                {/* ✅ Badge  */}
+                                <div className="absolute top-44 sm:top-52  md:top-76 right-4 z-40">
+                                    <div className="w-19 h-24 bg-[#0e1c3c] clip-path-polygon-custom flex items-center justify-center text-white font-bold">
+                                        <div className="flex flex-col items-center">
+                                            <span className="text-xs">UPTO</span> {/* Decreased font size */}
+                                            <span className="text-2xl leading-none">40<span className="text-xl">%</span></span> {/* Decreased font size */}
+                                            <span className="text-xs mt-0.5">OFF</span> {/* Decreased font size and margin */}
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        className="w-4 h-4 absolute sm:-top-0 -top-0 -left-4 sm:-left-4  bg-[#142755]"
+                                        style={{
+                                            clipPath: "polygon(0% 0%, 100% 0%, 0% 100%)",
+                                            transform: "rotate(180deg)", // rotate the triangle
+                                        }}
+                                    ></div>
+
+
+                                </div>
+
+                                {/* Card Content */}
+                                <div className="p-4 border-x border-gray-200 z-10 relative">
+
+                                    <h2 className="text-2xl font-bold text-[#f05b00] mb-2 uppercase md:max-w-[290px]">
+                                        {service.title}
+                                    </h2>
+
+
+
+                                    <p className="mb-1 text-gray-700 text-sm md:text-base">
+                                        {service.duration}
+                                    </p>
+                                    <p className="mb-4 text-gray-700 text-sm md:text-base">
+                                        {service.age}
+                                    </p>
+
+                                    <div className="overflow-auto rounded-lg border border-gray-300 mt-5 shadow-sm">
+                                        <table className="w-full">
+                                            <thead className="bg-[#0e1c3c] text-white">
+                                                <tr>
+                                                    <th className="border-r border-gray-400 px-4 py-2 text-sm md:text-base">
+                                                        Duration
+                                                    </th>
+                                                    <th className="border-r border-gray-400 px-4 py-2 text-sm md:text-base">
+                                                        OLD PRICE
+                                                    </th>
+                                                    <th className="px-4 py-2 text-sm md:text-base">New price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {service.pricing.map((price, idx) => (
+                                                    <tr key={idx} className="even:bg-gray-50 text-center">
+                                                        <td className="border-r border-gray-300 px-4 py-2 text-sm font-semibold">
+                                                            {price.duration}
+                                                        </td>
+                                                        <td className="border-r border-gray-300 px-4 py-2 text-sm font-semibold text-gray-500">
+                                                            <s>{price.oldPrice} AED</s>
+                                                        </td>
+                                                        <td className="px-4 py-2 text-[#f05b00] font-bold text-sm">
+                                                            {price.newPrice} AED
+                                                        </td>
+                                                    </tr>
+
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                {/* Footer Buttons */}
+                                <div className="flex border-t border-gray-200">
+                                    <button className="bg-[#0e1c3c] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold">
+                                        ENQUIRY NOW
+                                    </button>
+                                    <button className="bg-[#f05b00] hover:bg-[#fa670c] w-full flex items-center justify-center gap-x-2 rounded-br-xl text-white font-semibold transition-colors duration-200">
+                                        <FaWhatsapp className="w-5 h-5" /> WHATSAPP NOW
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </>
+            )}
+
+            {(pathname === "/dunebuggy" || pathname === "/") && (
+                <Packages />
+            )}
+
+
 
 
 

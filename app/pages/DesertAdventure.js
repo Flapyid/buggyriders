@@ -6,8 +6,10 @@ import img3 from "../../assets/images/desert-adventure/premium-desert-safari-dub
 import img4 from "../../assets/images/desert-adventure/morning-desert-safari.webp"
 import img5 from "../../assets/images/desert-adventure/morning-desert-safari-atv.webp"
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function DesertAdventure() {
+  const pathname = usePathname();
   const demoPackages = [
     {
       id: 1,
@@ -110,7 +112,7 @@ export default function DesertAdventure() {
       title: "MORNING DESERT SAFARI + ATV",
       header: `Package "G" AED 300`,
       subtitle: "MORNING DESERT SAFARI + ATV",
-     image:img5,
+      image: img5,
       pricing: [
         { per: "PER HEAD", price: "	300 AED" },
 
@@ -134,20 +136,24 @@ export default function DesertAdventure() {
   return (
     <>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col items-center justify-center mt-10">
-        <h1
-          style={{ color: "#DF6618" }}
-          className="text-7xl font-semibold text-gray-900 mb-6"
-        >
-          Desert Adventure
-        </h1>
-        <p
-          id="subdescription"
-          className="text-lg text-gray-700 mb-8 text-center font-semibold"
-        >
-          Buggy Rider's desert adventure rental service presents a unique
-          opportunity to discover the mesmerising beauty of the desert that one
-          rarely gets to see.
-        </p>
+        {pathname === "/" && (
+          <>
+            <h1
+              style={{ color: "#DF6618" }}
+              className="text-7xl font-semibold text-gray-900 mb-6"
+            >
+              Desert Adventure
+            </h1>
+            <p
+              id="subdescription"
+              className="text-lg text-gray-700 mb-8 text-center font-semibold"
+            >
+              Buggy Rider's desert adventure rental service presents a unique
+              opportunity to discover the mesmerising beauty of the desert that one
+              rarely gets to see.
+            </p>
+          </>
+        )}
         <div className="grid w-screen md:grid-cols-3 gap-6 px-50 justify-center ">
           {demoPackages.map((pkg) => (
             <div key={pkg.id} className=" flex flex-col justify-center items-center  ">

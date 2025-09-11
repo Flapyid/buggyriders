@@ -14,7 +14,7 @@ export default function DesertAdventure() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-  
+
   const demoPackages = [
     {
       id: 1,
@@ -52,7 +52,7 @@ export default function DesertAdventure() {
         "Unlimited Soft Drinks",
         "Fire Show",
         "Tanura Show",
-        "BBQ & Buffet Dinner(Veg & non - veg both available)"
+        "BBQ & Buffet Dinner(Veg & non - veg both available)",
       ],
     },
     {
@@ -61,9 +61,7 @@ export default function DesertAdventure() {
       header: `Package "C" AED 245`,
       subtitle: "Premium Desert Safari with 5 Star Buffet & 5 Live Shows",
       image: img3,
-      pricing: [
-        { per: "PER HEAD", price: "245 AED" },
-      ],
+      pricing: [{ per: "PER HEAD", price: "245 AED" }],
       features: [
         "Round-trip transfers",
         "Dune bashing for 30-40 minutes",
@@ -85,9 +83,7 @@ export default function DesertAdventure() {
       header: `Package "F" AED 250`,
       subtitle: "MORNING DESERT SAFARI",
       image: img4,
-      pricing: [
-        { per: "PER HEAD", price: "245 AED" },
-      ],
+      pricing: [{ per: "PER HEAD", price: "245 AED" }],
       features: [
         "Pick up from your Hotel or Residence anywhere in Dubai & Sharjah",
         "Pick by our desert safari licensed guide",
@@ -113,9 +109,7 @@ export default function DesertAdventure() {
       header: `Package "G" AED 300`,
       subtitle: "MORNING DESERT SAFARI + ATV",
       image: img5,
-      pricing: [
-        { per: "PER HEAD", price: "	300 AED" },
-      ],
+      pricing: [{ per: "PER HEAD", price: "300 AED" }],
       features: [
         "Pick up from your Hotel or Residence anywhere in Dubai & Sharjah",
         "Pick by our desert safari licensed guide",
@@ -126,24 +120,20 @@ export default function DesertAdventure() {
         "Sand Boarding (Included)",
         "Short Camel Ride (Included)",
         "Unlimited Soft Drinks & Cold Water",
-        "Drop back to your Hotel or Residence in Dubai"
+        "Drop back to your Hotel or Residence in Dubai",
       ],
     },
   ];
 
-  // Function to handle WhatsApp redirection with improved message format
+  // WhatsApp redirect
   const handleWhatsApp = (pkg) => {
-    // Replace with your WhatsApp number (with country code, no + or leading zeros)
     const phoneNumber = "971501234567";
-
-    // Current date & time
     const now = new Date();
     const formattedDate = now.toLocaleString("en-IN", {
       dateStyle: "medium",
       timeStyle: "short",
     });
 
-    // Build professional WhatsApp message
     const whatsappMessage = `
 📌 *Quick Enquiry*
 
@@ -152,23 +142,20 @@ export default function DesertAdventure() {
 🕒 *Submitted on:* ${formattedDate}
     `;
 
-    // Encode message for URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
-
-    // Open WhatsApp in new tab
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };
 
-  // Function to handle enquiry modal
+  // Open enquiry modal
   const handleEnquiry = (pkg) => {
     setSelectedService(pkg);
     setOpen(true);
   };
 
-  // Function to close modal
+  // Close modal
   const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedPackage(null);
+    setOpen(false);
+    setSelectedService(null);
   };
 
   return (
@@ -192,12 +179,17 @@ export default function DesertAdventure() {
             </p>
           </>
         )}
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 w-full justify-center">
           {demoPackages.map((pkg) => (
             <div key={pkg.id} className="flex flex-col justify-center items-center">
-              <p style={{ color: "#DF6618" }} className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-center"> 
+              <p
+                style={{ color: "#DF6618" }}
+                className="text-base sm:text-lg font-semibold mb-2 sm:mb-3 text-center"
+              >
                 {pkg.header}
               </p>
+
               <div
                 className="w-full max-w-sm mx-auto rounded-2xl overflow-hidden shadow-lg 
                   border-2 border-gray-200 flex flex-col h-full
@@ -216,11 +208,12 @@ export default function DesertAdventure() {
 
                 {/* Content */}
                 <div className="p-3 sm:p-4 flex-1 flex flex-col">
-                  {/* Title */}
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 mb-1 uppercase">
                     {pkg.title}
                   </h2>
-                  <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">{pkg.subtitle}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
+                    {pkg.subtitle}
+                  </p>
 
                   {/* Price Table */}
                   <div className="border rounded-lg overflow-hidden mb-3 sm:mb-4">
@@ -231,7 +224,9 @@ export default function DesertAdventure() {
                     <div className="grid grid-cols-2 text-center text-xs sm:text-sm">
                       {pkg.pricing.map((price, index) => (
                         <React.Fragment key={index}>
-                          <div className="py-2 border-r font-semibold">{price.per}</div>
+                          <div className="py-2 border-r font-semibold">
+                            {price.per}
+                          </div>
                           <div className="py-2 font-semibold text-gray-800">
                             {price.price}
                           </div>
@@ -240,10 +235,13 @@ export default function DesertAdventure() {
                     </div>
                   </div>
 
-                  {/* Features List */}
+                  {/* Features */}
                   <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700 flex-1">
                     {pkg.features.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 font-medium">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 font-medium"
+                      >
                         <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-orange-500 mt-0.5 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
@@ -257,7 +255,10 @@ export default function DesertAdventure() {
                       </h3>
                       <ul className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                         {pkg.additional.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 font-medium">
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 font-medium"
+                          >
                             <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-orange-500 mt-0.5 flex-shrink-0" />
                             <span>{item}</span>
                           </li>
@@ -267,15 +268,15 @@ export default function DesertAdventure() {
                   )}
                 </div>
 
-                {/* Buttons - Updated to match the example */}
+                {/* Buttons */}
                 <div className="flex border-t border-gray-200">
-                  <button 
+                  <button
                     onClick={() => handleEnquiry(pkg)}
                     className="bg-[#0e1d37] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold"
                   >
                     ENQUIRY NOW
                   </button>
-                  <button 
+                  <button
                     onClick={() => handleWhatsApp(pkg)}
                     className="bg-orange-500 hover:bg-orange-600 w-full flex items-center justify-center gap-x-2 rounded-br-xl text-white font-semibold transition-colors duration-200 text-sm"
                   >
@@ -289,11 +290,11 @@ export default function DesertAdventure() {
       </div>
 
       {/* Enquiry Modal */}
-       <QuickEnquiryModal
-             isOpen={open}
-             onClose={() => setOpen(false)}
-             serviceName={selectedService}
-           />
+      <QuickEnquiryModal
+        isOpen={open}
+        onClose={closeModal}
+        serviceName={selectedService?.title || ""}
+      />
     </>
   );
 }

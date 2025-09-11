@@ -13,6 +13,7 @@ export default function BlogDetail({ params }) {
 
   return (
     <div>
+        
       {/* Hero Banner */}
       <section className="relative w-full h-[300px] md:h-[400px]">
         <Image

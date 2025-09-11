@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        domains: ["buggyriders.com","res.cloudinary.com"], // ✅ allow external image host
+      },
     async rewrites() {
         return [
             {

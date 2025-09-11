@@ -13,9 +13,12 @@ import polarisImg from "../../assets/images/home/Polaris-Buggies.webp";
 import twoseatercanambuggy from "../../assets/images/services/two-seater-canam-buggy-tour.webp";
 import fourseatercanambuggy from "../../assets/images/services/four-seater-canam-buggy-tour.webp";
 import { usePathname } from "next/navigation";
+import QuickEnquiryModal from "./QuickEnquiryModal";
 
 export default function Packages() {
   const [activeTab, setActiveTab] = useState("tab1");
+  const [open, setOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
   const pathname = usePathname();
 
   // Polaris dune buggy
@@ -117,28 +120,30 @@ export default function Packages() {
   const activeData = activeTab === "tab1" ? tab1 : tab2;
 
   return (
-    <main className="min-h-screen mx-20">
+    <main className="min-h-screen mx-4 md:mx-20">
       {/* Tab Navigation */}
       <div className="bg-white w-full">
-        <div className="flex w-full">
+        <div className="flex w-full flex-wrap">
           <button
-            className={`flex-1 text-center px-6 py-4 font-semibold text-lg md:text-xl uppercase border-b-7 transition-colors duration-300 
-              ${
-                activeTab === "tab1"
-                  ? "text-orange-600 border-orange-600"
-                  : "text-gray-600 border-gray-200"
-              }`}
+            className={`flex-1 text-center px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-semibold 
+               text-sm sm:text-base md:text-lg lg:text-xl uppercase border-b-7 transition-colors duration-300
+               ${
+                 activeTab === "tab1"
+                   ? "text-orange-600 border-orange-600"
+                   : "text-gray-600 border-gray-200"
+               }`}
             onClick={() => setActiveTab("tab1")}
           >
             Polaris dune buggy (2024 M)
           </button>
           <button
-            className={`flex-1 text-center px-6 py-4 font-semibold text-lg md:text-xl uppercase border-b-7 transition-colors duration-300
-              ${
-                activeTab === "tab2"
-                  ? "text-orange-600 border-orange-600"
-                  : "text-gray-600 border-gray-200"
-              }`}
+            className={`flex-1 text-center px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-semibold 
+               text-sm sm:text-base md:text-lg lg:text-xl uppercase border-b-7 transition-colors duration-300
+               ${
+                 activeTab === "tab2"
+                   ? "text-orange-600 border-orange-600"
+                   : "text-gray-600 border-gray-200"
+               }`}
             onClick={() => setActiveTab("tab2")}
           >
             Polaris turbo dune buggy (2024 M)
@@ -151,9 +156,9 @@ export default function Packages() {
         {activeData.map((service) => (
           <div
             key={service.id}
-            className="w-full max-w-md border border-gray-700 hover:border-[#f05b00] rounded-2xl bg-white shadow-lg relative overflow-visible transition-all duration-200 group"
+            className="w-full border border-gray-700 hover:border-[#f05b00] rounded-2xl bg-white shadow-lg relative overflow-visible transition-all duration-200 group"
           >
-            {/* Image Section */}
+            {/* Image */}
             <motion.div className="relative overflow-hidden rounded-t-2xl">
               <Image
                 src={service.image}
@@ -184,9 +189,9 @@ export default function Packages() {
               ></div>
             </div>
 
-            {/* Card Content */}
+            {/* Content */}
             <div className="p-4 border-x border-gray-200 z-30 relative">
-              <h2 className="text-xl font-bold text-[#f05b00] mb-2 uppercase">
+              <h2 className="text-xl font-bold text-[#f05b00] mb-2 uppercase w-56 sm:w-64 ">
                 {service.title}
               </h2>
               <p className="mb-1 text-gray-700 text-sm md:text-base">
@@ -230,18 +235,62 @@ export default function Packages() {
               </div>
             </div>
 
-            {/* Footer Buttons */}
+            {/* Footer */}
             <div className="flex border-t border-gray-200">
-              <button className="bg-[#0e1c3c] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold">
+              <button
+                onClick={() => {
+                  setSelectedService(service.title);
+                  setOpen(true);
+                }}
+                className="bg-[#0e1c3c] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold"
+              >
                 ENQUIRY NOW
               </button>
-              <button className="bg-[#f05b00] hover:bg-[#fa670c] w-full flex items-center justify-center gap-x-2 rounded-br-xl text-white font-semibold transition-colors duration-200">
+              <button
+                onClick={() => {
+                  // Replace with your WhatsApp number (with country code, no + or leading zeros)
+                  const phoneNumber = "919876543210";
+
+                  // Current date & time
+                  const now = new Date();
+                  const formattedDate = now.toLocaleString("en-IN", {
+                    dateStyle: "medium",
+                    timeStyle: "short",
+                  });
+
+                  // WhatsApp message
+                  const whatsappMessage = `
+📌 *Quick Enquiry*
+
+✨ *Interested in:* ${service.title}
+
+🕒 *Submitted on:* ${formattedDate}
+    `;
+
+                  // Encode message for URL
+                  const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                  // Open WhatsApp
+                  window.open(
+                    `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+                    "_blank"
+                  );
+                }}
+                className="bg-[#f05b00] hover:bg-[#fa670c] w-full flex items-center justify-center gap-x-2 rounded-br-xl text-white font-semibold transition-colors duration-200 text-sm "
+              >
                 <FaWhatsapp className="w-5 h-5" /> WHATSAPP NOW
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Quick Enquiry Modal */}
+      <QuickEnquiryModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        serviceName={selectedService}
+      />
 
       {/* Extra Can-Am Section only on homepage */}
       {pathname === "/" && (
@@ -263,12 +312,12 @@ export default function Packages() {
               <p className="mt-6 text-[#0c1a3d] text-base md:text-lg leading-snug">
                 Our Can-Am buggies stand for strength, precision, and
                 performance. These vehicles are designed for the most difficult
-                terrains, with exceptional stability and control. Whether you are
-                an experienced off-roader or a first-time adventurer, the Can-Am
-                buggies offer a smooth, comfortable ride that easily traverses
-                rugged terrain. Can-Am buggies are the ideal choice for those
-                looking for an adrenaline-fueled adventure, thanks to innovative
-                features and cutting-edge technology
+                terrains, with exceptional stability and control. Whether you
+                are an experienced off-roader or a first-time adventurer, the
+                Can-Am buggies offer a smooth, comfortable ride that easily
+                traverses rugged terrain. Can-Am buggies are the ideal choice
+                for those looking for an adrenaline-fueled adventure, thanks to
+                innovative features and cutting-edge technology
               </p>
               <button
                 style={{ backgroundColor: "#DF6618" }}
@@ -279,11 +328,12 @@ export default function Packages() {
             </div>
           </section>
 
-          <div className="flex w-full justify-center gap-10 bg-white ">
+          {/* FIXED Can-Am Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white px-4 pb-10">
             {fourseater.map((service) => (
               <div
                 key={service.id}
-                className="w-full max-w-md border border-gray-700 hover:border-[#f05b00] rounded-2xl bg-white shadow-lg relative overflow-visible transition-all duration-200 group"
+                className="border border-gray-700 hover:border-[#f05b00] rounded-2xl bg-white shadow-lg relative overflow-visible transition-all duration-200 group"
               >
                 <motion.div className="relative overflow-hidden rounded-t-2xl">
                   <Image
@@ -294,6 +344,8 @@ export default function Packages() {
                     className="w-full h-48 sm:h-56 md:min-h-80 object-cover transition-transform duration-600"
                   />
                 </motion.div>
+
+                {/* Badge */}
                 <div className="absolute top-44 sm:top-52  md:top-76 right-4 z-40">
                   <div className="w-19 h-24 bg-[#0e1c3c] clip-path-polygon-custom flex items-center justify-center text-white font-bold">
                     <div className="flex flex-col items-center">
@@ -312,7 +364,9 @@ export default function Packages() {
                     }}
                   ></div>
                 </div>
-                <div className="p-4 border-x border-gray-200 z-10 relative">
+
+                {/* Content */}
+                <div className="p-4 border-x border-gray-200 z-10 relative ">
                   <h2 className="text-2xl font-bold text-[#f05b00] mb-2 uppercase md:max-w-[290px]">
                     {service.title}
                   </h2>
@@ -322,6 +376,7 @@ export default function Packages() {
                   <p className="mb-4 text-gray-700 text-sm md:text-base">
                     {service.age}
                   </p>
+
                   <div className="overflow-auto rounded-lg border border-gray-300 mt-5 shadow-sm">
                     <table className="w-full">
                       <thead className="bg-[#0e1c3c] text-white">
@@ -339,10 +394,7 @@ export default function Packages() {
                       </thead>
                       <tbody>
                         {service.pricing.map((price, idx) => (
-                          <tr
-                            key={idx}
-                            className="even:bg-gray-50 text-center"
-                          >
+                          <tr key={idx} className="even:bg-gray-50 text-center">
                             <td className="border-r border-gray-300 px-4 py-2 text-sm font-semibold">
                               {price.duration}
                             </td>
@@ -358,8 +410,16 @@ export default function Packages() {
                     </table>
                   </div>
                 </div>
+
+                {/* Footer */}
                 <div className="flex border-t border-gray-200">
-                  <button className="bg-[#0e1c3c] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold">
+                  <button
+                    onClick={() => {
+                      setSelectedService(service.title);
+                      setOpen(true);
+                    }}
+                    className="bg-[#0e1c3c] hover:bg-[#1a2d52] text-white w-full rounded-bl-xl p-3 transition-colors duration-200 font-semibold"
+                  >
                     ENQUIRY NOW
                   </button>
                   <button className="bg-[#f05b00] hover:bg-[#fa670c] w-full flex items-center justify-center gap-x-2 rounded-br-xl text-white font-semibold transition-colors duration-200">

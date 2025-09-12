@@ -1,4 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa";
+import { PHNumber } from "../phone";
 
 export default function ServicesSection() {
   const services = [
@@ -42,10 +43,19 @@ export default function ServicesSection() {
               </p>
             </div>
 
-            <button className="mt-6 flex items-center justify-center gap-2 bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-all">
-              <FaWhatsapp className="text-xl" />
-              WHATSAPP NOW
-            </button>
+           <button
+  onClick={() =>
+    window.open(
+      `https://wa.me/${PHNumber}?text=Hello! I am interested in your services.`,
+      "_blank"
+    )
+  }
+  className="mt-6 flex items-center justify-center gap-2 bg-orange-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-orange-600 transition-all"
+>
+  <FaWhatsapp className="text-xl" />
+  WHATSAPP NOW
+</button>
+
           </div>
         ))}
       </div>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { Phone, Smartphone, MessageCircle } from "lucide-react";
 import bgimg from "../../assets/images/global/contact-page-header-bg-image.webp";
+import { PHNumber } from "../phone";
+// import global phone number
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,7 +24,22 @@ export default function ContactPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+
+    // Build WhatsApp message
+    const message = `
+Hello, my name is ${formData.firstName}${formData.lastName}.
+📌 Subject: ${formData.subject}
+📧 Email: ${formData.email}
+📞 Phone: ${formData.phone}
+🏠 Address: ${formData.address}
+💬 Message: ${formData.message}
+    `;
+
+    // Redirect to WhatsApp
+    window.open(
+      `https://wa.me/${PHNumber}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
   };
 
   return (

@@ -12,6 +12,7 @@ import Footer from "./pages/Footer";
 import { addLeadIfAllowed } from "./utils/leadService";
 import Gallery from "./pages/Gallery";
 import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import { PHNumber } from "./phone";
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
@@ -62,18 +63,18 @@ export default function ClientLayout({ children }) {
 
       {/* ✅ Floating Buttons */}
       {!hideLayout && (
-        <div className="fixed bottom-5 left-5 flex flex-col gap-4 z-50">
+        <div className="fixed bottom-15 left-5 flex flex-col gap-4 z-50">
 
            {/* Call Button */}
           <a
-            href="tel:+971XXXXXXXXX" // change to your phone number
-            className="flex items-center justify-center mb-3  w-14 h-14 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition"
+            href={`tel:+${PHNumber}` }// change to your phone number
+            className="flex items-center justify-center mb-3  w-12 h-12 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition"
           >
             <FaPhoneAlt className="text-xl" />
           </a>
           {/* WhatsApp with pulsing effect */}
           <a
-            href="https://wa.me/971XXXXXXXXX" // change to your WhatsApp number
+            href={`https://wa.me/${PHNumber}`} // change to your WhatsApp number
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg"

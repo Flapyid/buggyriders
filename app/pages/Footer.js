@@ -8,6 +8,7 @@ import {
   FaInstagram,
   FaPinterestP,
 } from "react-icons/fa";
+import { PHNumber } from "../phone";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -31,7 +32,26 @@ export default function Footer() {
           </p>
 
           {/* Form */}
-          <form className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-10">
+          <form
+  onSubmit={(e) => {
+    e.preventDefault();
+
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const phone = e.target[2].value;
+
+    const message = `Hello, my name is ${name}. I would like to request a call back. 
+Here are my details:
+📧 Email: ${email}
+📞 Phone: ${phone}`;
+
+    window.open(
+      `https://wa.me/${PHNumber}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  }}
+  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-10"
+>
             <div className="flex flex-col text-left">
               <label className="text-xs sm:text-sm font-medium text-white mb-1">
                 Full Name *
@@ -96,10 +116,10 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-3 uppercase text-gray-800">ABOUT</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="hover:text-orange-600">Who We Are</a></li>
-              <li><a href="#" className="hover:text-orange-600">Gallery</a></li>
-              <li><a href="#" className="hover:text-orange-600">Our Blogs</a></li>
-              <li><a href="#" className="hover:text-orange-600">Contact Us</a></li>
+              <li><a href="/about" className="hover:text-orange-600">Who We Are</a></li>
+              <li><a href="/gallery" className="hover:text-orange-600">Gallery</a></li>
+              <li><a href="/blog" className="hover:text-orange-600">Our Blogs</a></li>
+              <li><a href="/contact" className="hover:text-orange-600">Contact Us</a></li>
             </ul>
           </div>
 
@@ -107,9 +127,9 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-3 uppercase text-gray-800">SERVICES</h3>
             <ul className="space-y-2 text-gray-600">
-              <li><a href="#" className="hover:text-orange-600">Dune Buggy Tours</a></li>
-              <li><a href="#" className="hover:text-orange-600">Quad Bike Tours</a></li>
-              <li><a href="#" className="hover:text-orange-600">Desert Safari</a></li>
+              <li><a href="/dunebuggy" className="hover:text-orange-600">Dune Buggy Tours</a></li>
+              <li><a href="/quadbike" className="hover:text-orange-600">Quad Bike Tours</a></li>
+              <li><a href="/desertadventure" className="hover:text-orange-600">Desert Safari</a></li>
             </ul>
           </div>
 
@@ -117,11 +137,11 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-3 uppercase text-gray-800">FOLLOW US ON</h3>
             <div className="flex justify-center md:justify-start gap-3">
-              <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#3b5998] text-white hover:bg-white hover:text-[#3b5998] border-2 hover:border-[#3b5998] transition-all duration-300"><FaFacebookF className="w-3 h-3" /></a>
-              <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1da1f2] text-white hover:bg-white hover:text-[#1da1f2] border-2 hover:border-[#1da1f2] transition-all duration-300"><FaTwitter className="w-3 h-3" /></a>
-              <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#0077b5] text-white hover:bg-white hover:text-[#0077b5] border-2 hover:border-[#0077b5] transition-all duration-300"><FaLinkedinIn className="w-3 h-3" /></a>
-              <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e1306c] text-white hover:bg-white hover:text-[#e1306c] border-2 hover:border-[#e1306c] transition-all duration-300"><FaInstagram className="w-3 h-3" /></a>
-              <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#bd081c] text-white hover:bg-white hover:text-[#bd081c] border-2 hover:border-[#bd081c] transition-all duration-300"><FaPinterestP className="w-3 h-3" /></a>
+              <a target="_blank" href="https://facebook.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#3b5998] text-white hover:bg-white hover:text-[#3b5998] border-2 hover:border-[#3b5998] transition-all duration-300"><FaFacebookF className="w-3 h-3" /></a>
+              <a target="_blank" href="https://x.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1da1f2] text-white hover:bg-white hover:text-[#1da1f2] border-2 hover:border-[#1da1f2] transition-all duration-300"><FaTwitter className="w-3 h-3" /></a>
+              
+              <a target="_blank" href="https://instagram.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e1306c] text-white hover:bg-white hover:text-[#e1306c] border-2 hover:border-[#e1306c] transition-all duration-300"><FaInstagram className="w-3 h-3" /></a>
+              <a target="_blank" href="https://pinterest.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#bd081c] text-white hover:bg-white hover:text-[#bd081c] border-2 hover:border-[#bd081c] transition-all duration-300"><FaPinterestP className="w-3 h-3" /></a>
             </div>
           </div>
         </div>

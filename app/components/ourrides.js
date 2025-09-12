@@ -23,7 +23,7 @@ export default function OurRides() {
 
     const quadbikes = [
         {
-            id: "quad bike tours",
+            id: "1",
             title: "quad bike tours",
             duration: "Tour duration: 30 Minutes",
             age: 'Driver age: 16+ ',
@@ -34,7 +34,7 @@ export default function OurRides() {
             ],
         },
         {
-            id: "quad bike tours",
+            id: "2",
             title: "quad bike tours",
             duration: "Tour duration: 1 Hour",
             age: 'Driver age: 16+ ',
@@ -45,7 +45,7 @@ export default function OurRides() {
             ],
         },
         {
-            id: "quad bike tours",
+            id: "3",
             title: "quad bike tours",
             duration: "Tour duration: 2 Hour",
             age: 'Driver age: 16+ ',

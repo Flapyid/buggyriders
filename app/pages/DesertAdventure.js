@@ -9,6 +9,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { FaWhatsapp } from "react-icons/fa";
 import QuickEnquiryModal from "./QuickEnquiryModal";
+import { PHNumber } from "../phone";
 
 export default function DesertAdventure() {
   const pathname = usePathname();
@@ -127,7 +128,7 @@ export default function DesertAdventure() {
 
   // WhatsApp redirect
   const handleWhatsApp = (pkg) => {
-    const phoneNumber = "971501234567";
+    
     const now = new Date();
     const formattedDate = now.toLocaleString("en-IN", {
       dateStyle: "medium",
@@ -143,7 +144,7 @@ export default function DesertAdventure() {
     `;
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/${PHNumber}?text=${encodedMessage}`, "_blank");
   };
 
   // Open enquiry modal

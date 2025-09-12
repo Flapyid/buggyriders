@@ -14,6 +14,7 @@ import twoseatercanambuggy from "../../assets/images/services/two-seater-canam-b
 import fourseatercanambuggy from "../../assets/images/services/four-seater-canam-buggy-tour.webp";
 import { usePathname } from "next/navigation";
 import QuickEnquiryModal from "./QuickEnquiryModal";
+import { PHNumber } from "../phone";
 
 export default function Packages() {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -249,7 +250,6 @@ export default function Packages() {
               <button
                 onClick={() => {
                   // Replace with your WhatsApp number (with country code, no + or leading zeros)
-                  const phoneNumber = "919876543210";
 
                   // Current date & time
                   const now = new Date();
@@ -272,7 +272,7 @@ export default function Packages() {
 
                   // Open WhatsApp
                   window.open(
-                    `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
+                    `https://wa.me/${PHNumber}?text=${encodedMessage}`,
                     "_blank"
                   );
                 }}

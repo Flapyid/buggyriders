@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { X } from "lucide-react";
+import { PHNumber } from "../phone";
 
 export default function QuickEnquiryModal({ isOpen, onClose, serviceName }) {
   const [formData, setFormData] = useState({
@@ -20,7 +21,6 @@ export default function QuickEnquiryModal({ isOpen, onClose, serviceName }) {
     e.preventDefault();
 
     // Replace with your WhatsApp number (with country code, no + or leading zeros)
-    const phoneNumber = "919876543210";
 
     // Current date & time
     const now = new Date();
@@ -47,7 +47,7 @@ export default function QuickEnquiryModal({ isOpen, onClose, serviceName }) {
     const encodedMessage = encodeURIComponent(whatsappMessage);
 
     // Open WhatsApp in new tab
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+    window.open(`https://wa.me/${PHNumber}?text=${encodedMessage}`, "_blank");
 
     // Close modal after submission
     onClose();

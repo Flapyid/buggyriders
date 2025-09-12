@@ -107,100 +107,80 @@ const Header = () => {
         )}
 
         {/* Menu Sheet */}
-        <div
-          className={`fixed top-0 left-0 h-screen bg-white text-[#0D172B] transform transition-transform duration-300 ease-in-out z-50 
-          w-full md:w-[400px] ${
-            isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <div className="flex flex-col h-full p-6">
-            {/* Header */}
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-xl font-bold">Menu</h2>
-              <button
-                onClick={toggleMobileMenu}
-                className="focus:outline-none p-2 text-2xl"
-              >
-                ✕
-              </button>
-            </div>
+        {/* Menu Sheet */}
+<div
+  className={`fixed top-0 right-0 h-screen bg-white text-[#0D172B] transform transition-transform duration-300 ease-in-out z-50 
+  w-full md:w-[400px] ${
+    isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+>
+  <div className="flex flex-col h-full p-6">
+    {/* Header */}
+    <div className="flex justify-between items-center mb-8">
+      <h2 className="text-xl font-bold">Menu</h2>
+      <button
+        onClick={toggleMobileMenu}
+        className="focus:outline-none p-2 text-2xl"
+      >
+        ✕
+      </button>
+    </div>
 
-            {/* Nav Links */}
-            <nav className="flex flex-col space-y-6 text-lg font-medium flex-grow uppercase">
-              <Link
-                href="/dunebuggy"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Dune Buggy Tours
-              </Link>
-              <Link
-                href="/quadbike"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Quad Bike Tours
-              </Link>
-              <Link
-                href="/desertadventure"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Desert Adventure
-              </Link>
-              <Link
-                href="/gallery"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Gallery
-              </Link>
-              <Link
-                href="/about"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                About Us
-              </Link>
-              <Link
-                href="/contact"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Contact Us
-              </Link>
-              <Link
-                href="/blog"
-                onClick={toggleMobileMenu}
-                className="pb-2 border-b border-gray-400/40"
-              >
-                Blog
-              </Link>
-            </nav>
+    {/* Nav Links */}
+    <nav className="flex flex-col space-y-6 text-lg font-medium flex-grow uppercase">
+      <Link
+        href="/dunebuggy"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Dune Buggy Tours
+      </Link>
+      <Link
+        href="/quadbike"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Quad Bike Tours
+      </Link>
+      <Link
+        href="/desertadventure"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Desert Adventure
+      </Link>
+      <Link
+        href="/gallery"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Gallery
+      </Link>
+      <Link
+        href="/about"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        About Us
+      </Link>
+      <Link
+        href="/contact"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Contact Us
+      </Link>
+      <Link
+        href="/blog"
+        onClick={toggleMobileMenu}
+        className="pb-2 border-b border-gray-400/40"
+      >
+        Blog
+      </Link>
+    </nav>
+  </div>
+</div>
 
-            {/* Social Icons */}
-            {/* <div className="flex justify-center gap-6 mt-10">
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-[#3b5998] text-white"
-              >
-                <FaFacebookF />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-[#E1306C] text-white"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-[#1DA1F2] text-white"
-              >
-                <FaTwitter />
-              </a>
-            </div> */}
-          </div>
-        </div>
       </header>
     </div>
   );

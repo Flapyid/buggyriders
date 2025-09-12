@@ -136,12 +136,13 @@ Here are my details:
           {/* Social */}
           <div>
             <h3 className="font-bold mb-3 uppercase text-gray-800">FOLLOW US ON</h3>
-            <div className="flex justify-center md:justify-start gap-3">
-              <a target="_blank" href="https://facebook.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#3b5998] text-white hover:bg-white hover:text-[#3b5998] border-2 hover:border-[#3b5998] transition-all duration-300"><FaFacebookF className="w-3 h-3" /></a>
-              <a target="_blank" href="https://x.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1da1f2] text-white hover:bg-white hover:text-[#1da1f2] border-2 hover:border-[#1da1f2] transition-all duration-300"><FaTwitter className="w-3 h-3" /></a>
+            <div className="flex justify-center md:justify-start gap-3 ">
+              <a target="_blank" href="https://facebook.com/buggyriders" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#3b5998] text-white hover:bg-white hover:text-[#3b5998] border-2 hover:border-[#3b5998] transition-all duration-300"><FaFacebookF className="w-4 h-4" /></a>
+              <a target="_blank" href="https://x.com/buggyriders1" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1da1f2] text-white hover:bg-white hover:text-[#1da1f2] border-2 hover:border-[#1da1f2] transition-all duration-300"><FaTwitter className="w-3 h-3" /></a>
+              <a target="_blank" href="https://www.linkedin.com/company/buggy-riders/about" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1da1f2] text-white hover:bg-white hover:text-[#1da1f2] border-2 hover:border-[#1da1f2] transition-all duration-300"><FaLinkedinIn className="w-4 h-4" /></a>
               
-              <a target="_blank" href="https://instagram.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#e1306c] text-white hover:bg-white hover:text-[#e1306c] border-2 hover:border-[#e1306c] transition-all duration-300"><FaInstagram className="w-3 h-3" /></a>
-              <a target="_blank" href="https://pinterest.com/buggyriders" className="w-8 h-8 flex items-center justify-center rounded-full bg-[#bd081c] text-white hover:bg-white hover:text-[#bd081c] border-2 hover:border-[#bd081c] transition-all duration-300"><FaPinterestP className="w-3 h-3" /></a>
+              <a target="_blank" href="https://instagram.com/buggyridersuae" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#e1306c] text-white hover:bg-white hover:text-[#e1306c] border-2 hover:border-[#e1306c] transition-all duration-300"><FaInstagram className="w-4 h-4" /></a>
+              <a target="_blank" href="https://pinterest.com/buggyriders" className="w-10 h-10 flex items-center justify-center rounded-full bg-[#bd081c] text-white hover:bg-white hover:text-[#bd081c] border-2 hover:border-[#bd081c] transition-all duration-300"><FaPinterestP className="w-4 h-4" /></a>
             </div>
           </div>
         </div>

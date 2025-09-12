@@ -179,7 +179,7 @@ const Header = () => {
             </nav>
 
             {/* Social Icons */}
-            <div className="flex justify-center gap-6 mt-10">
+            {/* <div className="flex justify-center gap-6 mt-10">
               <a
                 href="#"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-[#3b5998] text-white"
@@ -198,7 +198,7 @@ const Header = () => {
               >
                 <FaTwitter />
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>

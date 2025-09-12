@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Header from "./navbar/Header";
 import WhatWeInclude from "./pages/WhatWeInclude";
@@ -11,12 +11,14 @@ import TestimonialPage from "./pages/Testimonial";
 import Footer from "./pages/Footer";
 import { addLeadIfAllowed } from "./utils/leadService";
 import Gallery from "./pages/Gallery";
-import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import { FaWhatsapp, FaPhoneAlt, FaChevronUp } from "react-icons/fa"; // ✅ added FaChevronUp
 import { PHNumber } from "./phone";
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+
+  const [showScrollTop, setShowScrollTop] = useState(false); // ✅ state
 
   useEffect(() => {
     // 🔑 Redirect logged-in users to dashboard if on /admin
@@ -32,6 +34,19 @@ export default function ClientLayout({ children }) {
       addLeadIfAllowed(pathname);
     }
   }, [pathname]);
+
+  useEffect(() => {
+    // 🎯 Show scroll-to-top button only after some scroll
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 200);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const isAdminPage = pathname?.startsWith("/admin");
   const isLoginPage = pathname?.startsWith("/login");
@@ -61,31 +76,38 @@ export default function ClientLayout({ children }) {
       )}
       {!hideLayout && isExcludedPage && <Footer />}
 
-      {/* ✅ Floating Buttons */}
+      {/* ✅ Floating Buttons (Left side) */}
       {!hideLayout && (
         <div className="fixed bottom-15 left-5 flex flex-col gap-4 z-50">
-
-           {/* Call Button */}
+          {/* Call Button */}
           <a
-            href={`tel:+${PHNumber}` }// change to your phone number
-            className="flex items-center justify-center mb-3  w-12 h-12 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition"
+            href={`tel:+${PHNumber}`}
+            className="flex items-center justify-center mb-3 w-12 h-12 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition"
           >
             <FaPhoneAlt className="text-xl" />
           </a>
+
           {/* WhatsApp with pulsing effect */}
           <a
-            href={`https://wa.me/${PHNumber}`} // change to your WhatsApp number
+            href={`https://wa.me/${PHNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="relative flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white shadow-lg"
           >
-            {/* Radiation animation */}
             <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
             <FaWhatsapp className="relative z-10 text-2xl" />
           </a>
-
-         
         </div>
+      )}
+
+      {/* ✅ Scroll to Top Button (Right side) */}
+      {!hideLayout && showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-2 right-5 flex items-center justify-center w-12 h-12 rounded-full bg-orange-600 text-white shadow-lg hover:bg-orange-700 transition z-50"
+        >
+          <FaChevronUp className="text-xl" />
+        </button>
       )}
     </>
   );

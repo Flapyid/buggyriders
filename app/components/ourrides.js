@@ -4,7 +4,7 @@ import Image from "next/image";
 import tiremarkourrides from "../../assets/images/global/service-section-top-water-image.svg"
 import tiremarkpolaris from "../../assets/images/global/service-section-right-water-image.svg"
 import duneBuggyImg from "../../assets/images/home/Dune-Buggy-Rentals.webp"
-import polarisImg from "../../assets/images/home/Polaris-Buggies.webp"
+import polarisImg from "../../assets/images/home/POLARIS-BUGGIES.webp"
 import quadbike1 from "../../assets/images/services/quad-bike-tours.webp"
 import quadbike2 from "../../assets/images/services/quad-bike-tours-02.webp"
 import quadbike3 from "../../assets/images/services/quad-bike-tours-03.webp"

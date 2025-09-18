@@ -23,6 +23,9 @@ const chakraPetch = Chakra_Petch({
 export const metadata = {
   title: "Buggy Riders",
   description: "Dune Buggy Rental in Dubai",
+  icons: {
+    icon: "/favicon.ico",   // ✅ put favicon in /public/favicon.ico
+  },
 };
 
 export default function RootLayout({ children }) {

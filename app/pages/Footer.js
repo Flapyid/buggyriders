@@ -9,6 +9,7 @@ import {
   FaPinterestP,
 } from "react-icons/fa";
 import { PHNumber } from "../phone";
+import buggyfavicon from '../../assets/images/logo.svg';
 
 export default function Footer() {
   const pathname = usePathname();
@@ -106,7 +107,7 @@ Here are my details:
           {/* Logo */}
           <div className="flex justify-center md:justify-start">
             <img
-              src="https://buggyriders.com/images/logo.svg"
+              src={buggyfavicon}
               alt="Buggy Riders"
               className="mx-auto md:mx-0 w-36 sm:w-44"
             />

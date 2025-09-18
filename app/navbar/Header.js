@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import navicon from "../../assets/images/icons/navicon.svg";
+import buggyfavicon from '../../assets/images/logo.svg';
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Header = () => {
@@ -47,7 +48,7 @@ const Header = () => {
             }`}
           >
             <Image
-              src="https://buggyriders.com/images/logo.svg"
+              src={buggyfavicon}
               alt="Buggy Adventures"
               width={130}
               height={45}

@@ -9,7 +9,7 @@ import oneseaterbuggytour from "../../assets/images/services/one-seater-buggy-to
 import quadbike1 from "../../assets/images/services/quad-bike-tours.webp";
 import quadbike2 from "../../assets/images/services/quad-bike-tours-02.webp";
 import quadbike3 from "../../assets/images/services/quad-bike-tours-03.webp";
-import polarisImg from "../../assets/images/home/Polaris-Buggies.webp";
+import polarisImg from "../../assets/images/home/POLARIS-BUGGIES.webp";
 import twoseatercanambuggy from "../../assets/images/services/two-seater-canam-buggy-tour.webp";
 import fourseatercanambuggy from "../../assets/images/services/four-seater-canam-buggy-tour.webp";
 import { usePathname } from "next/navigation";

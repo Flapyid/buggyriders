@@ -160,7 +160,8 @@ Here are my details:
             Terms & Conditions
           </a>
         </div>
-        <p>© Copyright 2025.</p>
+  <p>© Copyright 2025.</p>
+  <p className="mt-1">Designed by <a href="https://flapyid.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">flapyid.com</a></p>
       </div>
     </footer>
   );

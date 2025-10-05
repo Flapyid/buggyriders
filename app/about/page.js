@@ -4,8 +4,23 @@ import { FaBars, FaPhone, FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import aboutImg from "../../assets/images/about/about-page-header-bg-image.webp";
 
+// Since this is a client component, we'll add metadata through head management
+import { useEffect } from "react";
+import Head from "next/head";
+
 export default function AboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // Update document title and meta description for client-side
+    document.title = "About Buggy Riders Dubai - Your Desert Adventure Experts | Buggy Riders Dubai";
+    
+    // Update meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about Buggy Riders Dubai, the leading desert adventure company offering premium dune buggy rentals, quad bike tours, and desert safaris since 2015.');
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">

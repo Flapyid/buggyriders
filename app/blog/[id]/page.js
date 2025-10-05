@@ -5,14 +5,67 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft } from "lucide-react";
 import headbg from "../../../assets/blog/images/header-bg-image.webp";
+import { generateMetadata as generateSEOMetadata, generateStructuredData } from "../../utils/seo";
+
+export function generateMetadata({ params }) {
+  const blog = blogs.find((b) => b.id.toString() === params.id);
+  
+  if (!blog) {
+    return {
+      title: 'Blog Post Not Found | Buggy Riders Dubai',
+      description: 'The requested blog post could not be found.'
+    };
+  }
+
+  return generateSEOMetadata({
+    title: blog.title,
+    description: blog.excerpt,
+    keywords: `${blog.title.toLowerCase()}, dubai desert blog, buggy riders tips`,
+    path: `/blog/${blog.id}`,
+    image: blog.image?.src || "/og-image.jpg",
+    type: "article",
+    publishedTime: blog.date
+  });
+}
 
 export default function BlogDetail({ params }) {
   const blog = blogs.find((b) => b.id.toString() === params.id);
 
   if (!blog) return notFound();
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blog.title,
+    "description": blog.excerpt,
+    "image": blog.image?.src || "https://buggyriders.ae/og-image.jpg",
+    "datePublished": blog.date,
+    "author": {
+      "@type": "Organization",
+      "name": "Buggy Riders Dubai"
+    },
+    "publisher": {
+      "@type": "Organization", 
+      "name": "Buggy Riders Dubai",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://buggyriders.ae/logo.jpg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://buggyriders.ae/blog/${blog.id}`
+    }
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData)
+        }}
+      />
         
       {/* Hero Banner */}
       <section className="relative w-full h-[300px] md:h-[400px]">

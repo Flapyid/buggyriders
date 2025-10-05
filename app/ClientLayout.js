@@ -13,6 +13,7 @@ import { addLeadIfAllowed } from "./utils/leadService";
 import Gallery from "./pages/Gallery";
 import { FaWhatsapp, FaPhoneAlt, FaChevronUp } from "react-icons/fa"; // ✅ added FaChevronUp
 import { PHNumber } from "./phone";
+// DynamicSEO removed: migrating to route-level metadata for SSR benefits
 
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
@@ -109,6 +110,8 @@ export default function ClientLayout({ children }) {
           <FaChevronUp className="text-xl" />
         </button>
       )}
+
+  {/* DynamicSEO removed; metadata handled via Next.js route metadata API */}
     </>
   );
 }

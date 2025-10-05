@@ -15,7 +15,7 @@ export default function GalleryLayout({ children }) {
       "@context": "https://schema.org",
       "@type": "ImageGallery", 
       "name": "Buggy Riders Dubai Desert Adventure Gallery",
-      "description": "Stunning photos from our desert adventures in Dubai featuring dune buggy tours, quad bike adventures, and desert safaris.",
+      "description": "Stunning photos from our desert adventures best in Dubai featuring dune buggy tours, quad bike adventures, and desert safaris.",
       "url": "https://buggyriders.ae/gallery",
       "image": "https://buggyriders.ae/gallery/1.webp"
     }

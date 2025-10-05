@@ -164,5 +164,6 @@ Here are my details:
   <p className="mt-1">Designed by <a href="https://flapyid.com" target="_blank" rel="noopener noreferrer" className="text-orange-400 hover:underline">flapyid.com</a></p>
       </div>
     </footer>
+
   );
 }
